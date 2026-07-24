@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "title": "Display projection family (draft)",
+  "allOf": [{"$ref": "envelope.schema.json"}],
+  "properties": {"messageType": {"enum": ["PublicGameView", "SeatGameView", "HostAdminView"]},
+    "payload": {"type": "object", "required": ["gameRevision", "lastEventSequence", "rulesetHash", "viewSchemaVersion"], "properties": {"gameRevision": {"type": "integer", "minimum": 0}, "lastEventSequence": {"type": "integer", "minimum": 0}, "rulesetHash": {"type": "string", "minLength": 1}, "viewSchemaVersion": {"type": "string", "minLength": 1}, "view": {"type": "object"}}, "additionalProperties": false}}
+}

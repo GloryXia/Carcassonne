@@ -1,0 +1,538 @@
+{
+  "catalogId": "river-current",
+  "rulesetVersion": "base-current",
+  "expansionId": "river",
+  "status": "draft",
+  "sourceBaseline": {
+    "note": "The River（River I，当前基础盒内置河流模块）12 块、10 种图案全部录入。逐块转写自 CAR Standard ver.7.3 p.267–269 The River 组件表（本地 PDF 提取扫描图逐一目检：边缘地貌、城市连通/分割、道路桥梁跨河、修道院归属）。规则事实依据 CAR p.27–28：源头先放、湖泊收尾、河流上不得放随从、河流段分割田野（注释 42）、源头/湖泊块田野环绕连通（注释 39）、仅立即 U 型回折被禁（注释 43）。四边记号到 N/E/S/W 的映射约定：从 N 开始顺时针；CAR 记号的 \"or\" 变体经扫描图确认为同拓扑的图案差异（印刷变体），各按一种朝向录入。",
+    "references": [
+      "Complete Annotated Rules (CAR) Standard ver. 7.3 p.27–28（河流规则全文，content/scenarios/sources/car-river-pages.txt）",
+      "CAR Standard ver. 7.3 p.267–269 The River Tile Distribution（content/scenarios/sources/carcassonne-rules-car.pdf，扫描图已提取目检）",
+      "docs/TILE_TOPOLOGY_SPEC.md §13（河流模块编码扩展）"
+    ]
+  },
+  "designs": [
+    {
+      "tileDefinitionId": "river-current.spring",
+      "copiesInPool": 0,
+      "startTileCopies": 1,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [{ "edge": "S", "zones": ["center"] }]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "placementTags": ["river-source"],
+      "visualAssetId": null,
+      "notes": "源头块：河流模块开局块，先放于桌面中央（CAR p.27）。唯一河流端口按约定置于 S 边（CAR 未规定朝向，旋转等价）；扫描图（p.267 Spring 行）确认河流自源头出山、仅一个边缘端口，田野环绕源头连通（CAR 注释 39）。",
+      "sourceReference": "CAR Standard ver.7.3 p.267 Spring x1 (The River)，扫描图目检；p.27 注释 39",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.lake",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [{ "edge": "S", "zones": ["center"] }]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "placementTags": ["river-lake"],
+      "visualAssetId": null,
+      "notes": "湖泊块：河流收尾块，河流放完后放置（CAR p.27）。唯一河流端口按约定置于 S 边；扫描图（p.267 Lake 行 x1 The River 图）确认河流自一边注入湖体，田野环绕湖泊连通（CAR 注释 39）。",
+      "sourceReference": "CAR Standard ver.7.3 p.267 Lake x1 (The River)，扫描图目检；p.27 注释 39",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.city-corner-river-curve",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "placementTags": ["river-curve"],
+      "visualAssetId": null,
+      "notes": "CAR 记号 city,city,river,river（按 N 起顺时针映射）。扫描图（p.268 首行 x1 The River 图）确认：邻边双城角部连通（单一城市段）；河流弯道 S↔W，分割出弯道内侧角田（seg-field-1）与沿城墙外侧田（seg-field-2）两段互不相连田野（CAR 注释 42）。",
+      "sourceReference": "CAR Standard ver.7.3 p.268 City,city,river,river x1 (The River)，扫描图目检",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.city-cap-road-river-bridge",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [{ "edge": "S", "zones": ["center"] }]
+        },
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [{ "edge": "E", "zones": ["left"] }]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["right"] }]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "S", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-4",
+          "featureType": "field",
+          "ports": [
+            { "edge": "W", "zones": ["left"] },
+            { "edge": "S", "zones": ["right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-4", "targetRef": "seg-field-4", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "notes": "CAR 记号 city,river,road,river。扫描图（p.268 该行代表图）确认：单城帽 N；河流直贯 E↔W；道路自 S 边经木桥跨河、止于城门，将北岸田与南岸田各分割为二，共四段互不相连田野（桥体为图案层次，道路段与河流段块内交叉但不连通，见规范 §13）。",
+      "sourceReference": "CAR Standard ver.7.3 p.268 City,river,road,river x1 (The River)，扫描图目检",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.city-opposite-river-straight",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 2,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-city-2",
+          "featureType": "city",
+          "ports": [{ "edge": "S", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-city-2", "targetRef": "seg-city-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "notes": "CAR 记号 city,river,city,river。扫描图（p.268 该行 The River/GQ11 代表图）确认：对边两个城市互不相连，河流直贯其间；两岸田野各为一段。同页另有城市跨河相连图案的扫描图，归属 The River II 行，不属于本目录。",
+      "sourceReference": "CAR Standard ver.7.3 p.268 City,river,city,river x1 (The River)，扫描图目检",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.farm-river-curve",
+      "copiesInPool": 2,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "placementTags": ["river-curve"],
+      "visualAssetId": null,
+      "notes": "CAR 记号 farm,farm,river,river ×2。扫描图（p.268 该行 \"or\" 前图）确认：河流弯道 S↔W，外侧田野绕 NE 角连通为一段，弯道内侧 SW 角单独一段。\"or\" 后图为同拓扑印刷变体（2014 版加绘葡萄园，属 Hills & Sheep 接口符号，本目录不录入扩展符号）。",
+      "sourceReference": "CAR Standard ver.7.3 p.268 Farm,farm,river,river x2 (The River)，扫描图目检",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.farm-river-straight",
+      "copiesInPool": 2,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 2,
+      "segments": [
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "notes": "CAR 记号 farm,river,farm,river ×2。扫描图（p.268 该行 \"or\" 两图）确认：河流直贯 E↔W（带河心岛图案），两岸田野各为一段。\"or\" 两图为同拓扑印刷变体（2014 版其一加绘羊，属 Hills & Sheep 接口符号，本目录不录入）。注意：同页另有带修道院的直河块，属 The River II 行，不属于本目录。",
+      "sourceReference": "CAR Standard ver.7.3 p.268 Farm,river,farm,river x2 (The River)，扫描图目检",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.monastery-road-bridge-river",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [{ "edge": "S", "zones": ["center"] }],
+          "endsAtCenter": true
+        },
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "S", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [
+            { "edge": "W", "zones": ["left"] },
+            { "edge": "S", "zones": ["right"] }
+          ]
+        }
+      ],
+      "centerFeatures": [
+        { "centerFeatureId": "center-monastery-1", "kind": "monastery" }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-monastery-1", "targetRef": "center-monastery-1", "allowedPieces": ["meeple", "abbot"] }
+      ],
+      "visualAssetId": null,
+      "notes": "CAR 记号 farm,river,road,river。修道院（cloister）归属块：CAR p.27 图例仅标示河流块中存在 cloister，文本未指明归属；经 p.268 该行 x1 (The River) 扫描图目检确认——修道院位于北岸，道路自 S 边经木桥跨河止于修道院（endsAtCenter），北岸田野环绕修道院连通为一段，南岸被道路分割为两段。此为单人目检结论，待第二人复核（TASK-06）。",
+      "sourceReference": "CAR Standard ver.7.3 p.268 Farm,river,road,river x1 (The River)，扫描图目检；p.27 图例 cloister",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.road-curve-river-curve",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "N", "zones": ["center"] },
+            { "edge": "E", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["right"] },
+            { "edge": "E", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] },
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "S", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] }
+      ],
+      "placementTags": ["river-curve"],
+      "visualAssetId": null,
+      "notes": "CAR 记号 road,road,river,river。扫描图（p.269 该行代表图）确认：道路弯道 N↔E 与河流弯道 S↔W 分居对角；三段田野——路弯内侧 NE 角、河弯内侧 SW 角、两弯之间的中部斜带（连通 NW 与 SE 两角）。",
+      "sourceReference": "CAR Standard ver.7.3 p.269 Road,road,river,river x1 (The River)，扫描图目检",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "river-current.road-river-crossing-bridge",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 2,
+      "segments": [
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "N", "zones": ["center"] },
+            { "edge": "S", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-river-1",
+          "featureType": "river",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["right"] },
+            { "edge": "E", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "S", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-4",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-4", "targetRef": "seg-field-4", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "notes": "CAR 记号 road,river,road,river。扫描图（p.269 该行 x1 The River 图）确认：道路直贯 N↔S、河流直贯 E↔W，道路经木桥跨河（桥体为图案层次，两段在块内交叉但不连通，见规范 §13）；道路与河流将田野分割为四角互不相连四段。",
+      "sourceReference": "CAR Standard ver.7.3 p.269 Road,river,road,river x1 (The River)，扫描图目检",
+      "verificationStatus": "已录入"
+    }
+  ]
+}

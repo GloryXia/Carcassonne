@@ -32,8 +32,10 @@
 - [产品需求](docs/PRODUCT_REQUIREMENTS.md)
 - [基础规则纲要](docs/GAME_RULES.md)
 - [地块与扩展目录](docs/TILE_AND_EXPANSION_CATALOG.md)
+- [地块拓扑编码规范](docs/TILE_TOPOLOGY_SPEC.md)
 - [交互与大屏设计](docs/INTERACTION_AND_DISPLAY.md)
 - [局域网架构](docs/LAN_ARCHITECTURE.md)
+- [局域网协议契约草案](contracts/protocol/README.md)
 - [技术栈调研](docs/TECH_STACK_RESEARCH.md)
 - [实现架构](docs/IMPLEMENTATION_ARCHITECTURE.md)
 - [规则引擎技术设计](docs/RULE_ENGINE_TECHNICAL_DESIGN.md)
@@ -44,6 +46,8 @@
 - [视觉、素材与 AR 方向](docs/VISUAL_AND_AR_DIRECTION.md)
 - [实施与验收路线](docs/DELIVERY_PLAN.md)
 - [决策日志](docs/DECISIONS.md)
+- [任务文档索引](docs/tasks/README.md)（交付独立 agent 执行的任务拆解）
+- [规则核心](packages/rules-core/README.md)
 
 ## 规则资料基线
 

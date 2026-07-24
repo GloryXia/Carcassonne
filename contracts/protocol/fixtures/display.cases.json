@@ -1,0 +1,4 @@
+{"schema":"display.schema.json","valid":[
+{"protocolVersion":"1.0","messageType":"PublicGameView","messageId":"v1","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"2026-07-23T08:00:00Z","payload":{"gameRevision":9,"lastEventSequence":21,"rulesetHash":"sha256:abc","viewSchemaVersion":"1","view":{}}},
+{"protocolVersion":"1.0","messageType":"SeatGameView","messageId":"v2","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"2026-07-23T08:00:01Z","payload":{"gameRevision":9,"lastEventSequence":21,"rulesetHash":"sha256:abc","viewSchemaVersion":"1"}}],"invalid":[
+{"protocolVersion":"1.0","messageType":"PublicGameView","messageId":"v3","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"2026-07-23T08:00:00Z","payload":{"gameRevision":9}}]}

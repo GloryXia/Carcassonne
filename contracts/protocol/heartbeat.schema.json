@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "title": "Application heartbeat family (draft)",
+  "allOf": [{"$ref": "envelope.schema.json"}],
+  "properties": {"messageType": {"enum": ["Heartbeat", "HeartbeatAck"]},
+    "payload": {"type": "object", "required": ["nonce"], "properties": {"nonce": {"type": "string", "minLength": 1}}, "additionalProperties": false}}
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "title": "Turn command/result/event family (draft)",
+  "allOf": [{"$ref": "envelope.schema.json"}],
+  "properties": {"messageType": {"enum": ["CommitTilePlacement", "CommandAccepted", "CommandRejected", "TilePlaced"]},
+    "payload": {"type": "object", "properties": {
+      "seatId": {"type": "string"}, "clientCommandSequence": {"type": "integer", "minimum": 0}, "expectedGameRevision": {"type": "integer", "minimum": 0},
+      "gameRevision": {"type": "integer", "minimum": 0}, "eventSequence": {"type": "integer", "minimum": 0}, "firstEventSequence": {"type": "integer", "minimum": 0}, "lastEventSequence": {"type": "integer", "minimum": 0},
+      "tileInstanceId": {"type": "string"}, "position": {"type": "object", "required": ["x", "y"], "properties": {"x": {"type": "integer"}, "y": {"type": "integer"}}, "additionalProperties": false},
+      "rotation": {"enum": ["North", "East", "South", "West"]}, "rulesetHash": {"type": "string"}, "errorCode": {"type": "string", "pattern": "^(AUTH|ROOM|PROTOCOL|RULE|PERSISTENCE|HOST)_"}, "currentGameRevision": {"type": "integer", "minimum": 0}, "safeDetails": {"type": "object"}
+    }, "additionalProperties": false}}
+}

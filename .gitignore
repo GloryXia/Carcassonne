@@ -1,0 +1,20 @@
+# Python caches and local dependency extractions
+__pycache__/
+*.py[cod]
+.pymupdf-pkg/
+
+# Rulebook image/PDF analysis scratch space
+.car-pages/
+.task03/
+tmp/
+CarcassonneAnnotatedRules.pdf
+content/scenarios/sources/
+
+# Editor and OS metadata
+.DS_Store
+.idea/
+.vscode/
+
+# Node/TypeScript build output
+node_modules/
+dist/

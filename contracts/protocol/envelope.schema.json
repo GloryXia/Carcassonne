@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "envelope.schema.json",
+  "title": "Carcassonne LAN message envelope (draft)",
+  "type": "object",
+  "required": ["protocolVersion", "messageType", "messageId", "instanceId", "roomId", "gameId", "sentAt", "payload"],
+  "properties": {
+    "protocolVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "messageType": {"type": "string", "minLength": 1},
+    "messageId": {"type": "string", "minLength": 1},
+    "correlationId": {"type": "string", "minLength": 1},
+    "instanceId": {"type": "string", "minLength": 1},
+    "roomId": {"type": "string", "minLength": 1},
+    "gameId": {"type": ["string", "null"]},
+    "sentAt": {"type": "string", "format": "date-time"},
+    "payload": {"type": "object"}
+  },
+  "additionalProperties": false
+}

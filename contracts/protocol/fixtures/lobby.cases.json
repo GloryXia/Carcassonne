@@ -1,0 +1,4 @@
+{"schema":"lobby.schema.json","valid":[
+{"protocolVersion":"1.0","messageType":"JoinRequestPending","messageId":"m1","instanceId":"host1","roomId":"room1","gameId":null,"sentAt":"2026-07-23T08:00:00Z","payload":{"joinRequestId":"join1"}},
+{"protocolVersion":"1.0","messageType":"JoinRequestApproved","messageId":"m2","instanceId":"host1","roomId":"room1","gameId":null,"sentAt":"2026-07-23T08:00:01Z","payload":{"joinRequestId":"join1","seatId":"seat1"}}],"invalid":[
+{"protocolVersion":"1.0","messageType":"JoinRequestPending","messageId":"m3","instanceId":"host1","roomId":"room1","gameId":"already-started","sentAt":"2026-07-23T08:00:00Z","payload":{}}]}

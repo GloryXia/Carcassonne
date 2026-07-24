@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "title": "Session/reconnect family (draft)",
+  "allOf": [{"$ref": "envelope.schema.json"}],
+  "properties": {"messageType": {"enum": ["ResumeSession", "SessionResumed"]},
+    "payload": {"type": "object", "required": ["lastEventSequence", "viewSchemaVersion"], "properties": {"lastEventSequence": {"type": "integer", "minimum": 0}, "viewSchemaVersion": {"type": "string", "minLength": 1}}, "additionalProperties": false}}
+}

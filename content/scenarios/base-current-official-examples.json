@@ -1,0 +1,474 @@
+{
+  "schemaVersion": 1,
+  "catalogId": "base-current-official-examples",
+  "scenarios": [
+    {
+      "scenarioId": "road-complete-3pt-between-monasteries",
+      "title": "完成道路：3 块 = 3 分，两端终止于修道院（CAR p.14 官方示例数值；盘面为等价转写构造）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）",
+        "page": 14,
+        "kind": "official-example"
+      },
+      "tags": ["road", "monastery"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.monastery-road", "rotation": 270 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 2, "y": 0, "tileDefinitionId": "base-current.monastery-road", "rotation": 90 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 1, "y": 0, "role": "thief" }
+        ]
+      },
+      "when": { "action": "score-feature", "at": { "x": 2, "y": 0 } },
+      "expect": {
+        "pointsAwarded": { "1": 3 },
+        "meeplesReturned": [ { "player": 1, "x": 1, "y": 0 } ]
+      }
+    },
+    {
+      "scenarioId": "road-complete-4pt",
+      "title": "完成道路：4 块 = 4 分，两端终止于修道院（CAR p.14 官方示例数值；盘面为等价转写构造）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）",
+        "page": 14,
+        "kind": "official-example"
+      },
+      "tags": ["road", "monastery"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.monastery-road", "rotation": 270 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 2, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 3, "y": 0, "tileDefinitionId": "base-current.monastery-road", "rotation": 90 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 1, "y": 0, "role": "thief" }
+        ]
+      },
+      "when": { "action": "score-feature", "at": { "x": 3, "y": 0 } },
+      "expect": {
+        "pointsAwarded": { "1": 4 },
+        "meeplesReturned": [ { "player": 1, "x": 1, "y": 0 } ]
+      }
+    },
+    {
+      "scenarioId": "city-complete-8pt-pennant",
+      "title": "完成城市：3 段 + 1 盾徽 = 8 分（CAR p.15 官方示例数值；盘面为等价转写构造）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）",
+        "page": 15,
+        "kind": "official-example"
+      },
+      "tags": ["city", "pennant"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 90 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.city-tunnel-pennant", "rotation": 90 },
+          { "x": 2, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 270 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 1, "y": 0, "role": "knight" }
+        ]
+      },
+      "when": { "action": "score-feature", "at": { "x": 2, "y": 0 } },
+      "expect": {
+        "pointsAwarded": { "1": 8 },
+        "meeplesReturned": [ { "player": 1, "x": 1, "y": 0 } ]
+      }
+    },
+    {
+      "scenarioId": "city-complete-8pt-no-pennant",
+      "title": "完成城市：4 段无盾徽 = 8 分（CAR p.15 官方示例数值；三面城块加三块城帽封口）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）",
+        "page": 15,
+        "kind": "official-example"
+      },
+      "tags": ["city"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.city-triple", "rotation": 0 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.city-cap", "rotation": 180 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 270 },
+          { "x": 0, "y": -1, "tileDefinitionId": "base-current.city-cap", "rotation": 0 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "knight" }
+        ]
+      },
+      "when": { "action": "score-feature", "at": { "x": 0, "y": -1 } },
+      "expect": {
+        "pointsAwarded": { "1": 8 },
+        "meeplesReturned": [ { "player": 1, "x": 0, "y": 0 } ]
+      }
+    },
+    {
+      "scenarioId": "city-tie-10pt-both-score-full",
+      "title": "并列全分：10 分城（4 段 + 1 盾徽）两名玩家各 1 骑士，各得 10 分（CAR p.15 官方示例数值；盘面为等价转写构造）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）",
+        "page": 15,
+        "kind": "official-example"
+      },
+      "tags": ["city", "pennant", "tie"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.city-triple-pennant", "rotation": 0 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.city-cap", "rotation": 180 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 270 },
+          { "x": 0, "y": -1, "tileDefinitionId": "base-current.city-cap", "rotation": 0 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "knight" },
+          { "player": 2, "x": 0, "y": 1, "role": "knight" }
+        ]
+      },
+      "when": { "action": "score-feature", "at": { "x": 0, "y": -1 } },
+      "expect": {
+        "pointsAwarded": { "1": 10, "2": 10 },
+        "meeplesReturned": [
+          { "player": 1, "x": 0, "y": 0 },
+          { "player": 2, "x": 0, "y": 1 }
+        ]
+      }
+    },
+    {
+      "scenarioId": "city-tie-8pt-both-score-full",
+      "title": "并列全分（补充）：8 分隧道城两名玩家各 1 骑士各得 8 分（依据 CAR p.15 并列条款的构造案例）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）并列规则条款 p.15",
+        "kind": "derived"
+      },
+      "tags": ["city", "pennant", "tie"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 90 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.city-tunnel-pennant", "rotation": 90 },
+          { "x": 2, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 270 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 1, "y": 0, "role": "knight" },
+          { "player": 2, "x": 0, "y": 0, "role": "knight" }
+        ]
+      },
+      "when": { "action": "score-feature", "at": { "x": 2, "y": 0 } },
+      "expect": {
+        "pointsAwarded": { "1": 8, "2": 8 },
+        "meeplesReturned": [
+          { "player": 1, "x": 1, "y": 0 },
+          { "player": 2, "x": 0, "y": 0 }
+        ]
+      }
+    },
+    {
+      "scenarioId": "monastery-complete-9pt",
+      "title": "完成修道院：3×3 全满 = 9 分（CAR p.16 官方示例数值；环形盘面为等价转写构造）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）",
+        "page": 16,
+        "kind": "official-example"
+      },
+      "tags": ["monastery"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.monastery", "rotation": 0 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 90 },
+          { "x": -1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 90 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 0, "y": -1, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 1, "y": 1, "tileDefinitionId": "base-current.road-curve", "rotation": 90 },
+          { "x": 1, "y": -1, "tileDefinitionId": "base-current.road-curve", "rotation": 180 },
+          { "x": -1, "y": 1, "tileDefinitionId": "base-current.road-curve", "rotation": 0 },
+          { "x": -1, "y": -1, "tileDefinitionId": "base-current.road-curve", "rotation": 270 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "monk" }
+        ]
+      },
+      "when": { "action": "score-feature", "at": { "x": -1, "y": -1 } },
+      "expect": {
+        "pointsAwarded": { "1": 9 },
+        "meeplesReturned": [ { "player": 1, "x": 0, "y": 0 } ]
+      }
+    },
+    {
+      "scenarioId": "field-farmer-3pt-one-city",
+      "title": "农夫终局：田接壤 1 个已完成城 = 3 分（依据 CAR p.15 农夫 3 分/城规则的构造案例）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）农夫计分规则 p.15–16",
+        "kind": "derived"
+      },
+      "tags": ["field", "endgame"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 90 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.city-tunnel", "rotation": 90 },
+          { "x": 2, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 270 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.monastery", "rotation": 0 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 1, "role": "farmer" }
+        ]
+      },
+      "when": { "action": "endgame" },
+      "expect": {
+        "pointsAwarded": { "1": 3 }
+      }
+    },
+    {
+      "scenarioId": "field-farmer-6pt-two-cities",
+      "title": "农夫终局：同一田接壤 2 个已完成城 = 6 分（一田多城；依据 CAR p.15 规则的构造案例）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）农夫计分规则 p.15–16",
+        "kind": "derived"
+      },
+      "tags": ["field", "endgame"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 90 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.city-tunnel", "rotation": 90 },
+          { "x": 2, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 270 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.monastery", "rotation": 0 },
+          { "x": -1, "y": 0, "tileDefinitionId": "base-current.city-tunnel-pennant", "rotation": 0 },
+          { "x": -1, "y": 1, "tileDefinitionId": "base-current.city-cap", "rotation": 180 },
+          { "x": -1, "y": -1, "tileDefinitionId": "base-current.city-cap", "rotation": 0 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 1, "role": "farmer" }
+        ]
+      },
+      "when": { "action": "endgame" },
+      "expect": {
+        "pointsAwarded": { "1": 6 }
+      }
+    },
+    {
+      "scenarioId": "field-split-by-road-two-farms",
+      "title": "田被道路与城分割：路北侧田接壤完成城得 3 分，路南侧田无城得 0 分（依据 CAR p.16–17 田分割规则的构造案例）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）田分割规则 p.16–17",
+        "kind": "derived"
+      },
+      "tags": ["field", "road", "endgame"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.city-cap", "rotation": 90 },
+          { "x": 1, "y": 1, "tileDefinitionId": "base-current.city-tunnel", "rotation": 90 },
+          { "x": 2, "y": 1, "tileDefinitionId": "base-current.city-cap", "rotation": 270 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "farmer", "segmentId": "seg-field-1" },
+          { "player": 2, "x": 0, "y": 0, "role": "farmer", "segmentId": "seg-field-2" }
+        ]
+      },
+      "when": { "action": "endgame" },
+      "expect": {
+        "pointsAwarded": { "1": 3 }
+      }
+    },
+    {
+      "scenarioId": "endgame-incomplete-road-3pt",
+      "title": "终局未完成道路：3 块 = 3 分，一端开敞（CAR p.18 官方示例数值；盘面为等价转写构造）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）",
+        "page": 18,
+        "kind": "official-example"
+      },
+      "tags": ["road", "endgame"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.monastery-road", "rotation": 270 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 2, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 0 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 1, "y": 0, "role": "thief" }
+        ]
+      },
+      "when": { "action": "endgame" },
+      "expect": {
+        "pointsAwarded": { "1": 3 }
+      }
+    },
+    {
+      "scenarioId": "endgame-incomplete-cloister-5pt",
+      "title": "终局未完成修道院：自身 + 4 邻居 = 5 分（依据 CAR p.18 条款的构造案例）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）终局修道院条款 p.18",
+        "kind": "derived"
+      },
+      "tags": ["monastery", "endgame"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.monastery", "rotation": 0 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 90 },
+          { "x": -1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 90 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 0, "y": -1, "tileDefinitionId": "base-current.road-straight", "rotation": 0 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "monk" }
+        ]
+      },
+      "when": { "action": "endgame" },
+      "expect": {
+        "pointsAwarded": { "1": 5 }
+      }
+    },
+    {
+      "scenarioId": "endgame-incomplete-city-3pt-pennant",
+      "title": "终局未完成城市：2 块 + 1 盾徽 = 3 分（依据 CAR p.18 终局条款的构造案例；盾徽仍计分）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）终局计分条款 p.18",
+        "kind": "derived"
+      },
+      "tags": ["city", "pennant", "endgame"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.city-tunnel-pennant", "rotation": 90 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 270 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "knight" }
+        ]
+      },
+      "when": { "action": "endgame" },
+      "expect": {
+        "pointsAwarded": { "1": 3 }
+      }
+    },
+    {
+      "scenarioId": "endgame-city-majority-loser-scores-zero",
+      "title": "终局未完成城市多数判定：3 块 + 1 盾徽 = 4 分归多数方（2 骑士），少数方 0 分（依据 CAR p.18 GREEN/BLACK 示例的构造案例）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Complete Annotated Rules Standard ver. 7.3（HiG 授权社区整理，转录官方规则与示例）终局多数规则示例 p.18",
+        "kind": "derived"
+      },
+      "tags": ["city", "pennant", "endgame"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.city-cap", "rotation": 90 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.city-tunnel-pennant", "rotation": 90 },
+          { "x": 2, "y": 0, "tileDefinitionId": "base-current.city-tunnel", "rotation": 90 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "knight" },
+          { "player": 1, "x": 2, "y": 0, "role": "knight" },
+          { "player": 2, "x": 1, "y": 0, "role": "knight" }
+        ]
+      },
+      "when": { "action": "endgame" },
+      "expect": {
+        "pointsAwarded": { "1": 4 }
+      }
+    },
+    {
+      "scenarioId": "deployment-road-occupied-rejected",
+      "title": "部署拒绝：新放地块连接到已有道路随从时，不得在该道路再次部署（Z-Man 基础规则 p.3 印刷示例的等价转写）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Z-Man Games Carcassonne Rulebook English（©2016，Carcassonne-EN.pdf）",
+        "page": 3,
+        "kind": "official-example"
+      },
+      "tags": ["road", "deployment"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 0 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "thief" }
+        ]
+      },
+      "when": {
+        "action": "place-piece",
+        "at": { "x": 1, "y": 0 },
+        "piece": { "player": 2, "role": "thief" }
+      },
+      "expect": {
+        "pointsAwarded": {},
+        "actionAccepted": false,
+        "rejectionCode": "FEATURE_OCCUPIED"
+      }
+    },
+    {
+      "scenarioId": "abbot-recall-6pt",
+      "title": "修道院长主动召回：跳过本回合部署，从有 5 个邻块的修道院召回并得 6 分（Z-Man 补充规则 p.2 官方示例数值；花园改为等价修道院盘面）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Z-Man Games Carcassonne v3 Supplemental Rulesheet（carcassonne_v3_supplement_en.pdf）",
+        "page": 2,
+        "kind": "official-example"
+      },
+      "tags": ["monastery", "abbot"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.monastery", "rotation": 0 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 90 },
+          { "x": -1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 90 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 0, "y": -1, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": -1, "y": -1, "tileDefinitionId": "base-current.road-curve", "rotation": 270 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "abbot" }
+        ]
+      },
+      "when": { "action": "reclaim-abbot", "at": { "x": 0, "y": 0 } },
+      "expect": {
+        "pointsAwarded": { "1": 6 },
+        "meeplesReturned": [ { "player": 1, "x": 0, "y": 0 } ]
+      }
+    },
+    {
+      "scenarioId": "abbot-complete-monastery-9pt",
+      "title": "修道院长完成修道院：被 8 块包围时得 9 分并返回供应区（Z-Man 补充规则 p.2）",
+      "rulesetId": "base-current",
+      "sourceReference": {
+        "document": "Z-Man Games Carcassonne v3 Supplemental Rulesheet（carcassonne_v3_supplement_en.pdf）",
+        "page": 2,
+        "kind": "official-clarification"
+      },
+      "tags": ["monastery", "abbot"],
+      "given": {
+        "board": [
+          { "x": 0, "y": 0, "tileDefinitionId": "base-current.monastery", "rotation": 0 },
+          { "x": 1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 90 },
+          { "x": -1, "y": 0, "tileDefinitionId": "base-current.road-straight", "rotation": 90 },
+          { "x": 0, "y": 1, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 0, "y": -1, "tileDefinitionId": "base-current.road-straight", "rotation": 0 },
+          { "x": 1, "y": 1, "tileDefinitionId": "base-current.road-curve", "rotation": 90 },
+          { "x": 1, "y": -1, "tileDefinitionId": "base-current.road-curve", "rotation": 180 },
+          { "x": -1, "y": 1, "tileDefinitionId": "base-current.road-curve", "rotation": 0 },
+          { "x": -1, "y": -1, "tileDefinitionId": "base-current.road-curve", "rotation": 270 }
+        ],
+        "meeples": [
+          { "player": 1, "x": 0, "y": 0, "role": "abbot" }
+        ]
+      },
+      "when": { "action": "score-feature", "at": { "x": -1, "y": -1 } },
+      "expect": {
+        "pointsAwarded": { "1": 9 },
+        "meeplesReturned": [ { "player": 1, "x": 0, "y": 0 } ]
+      }
+    }
+  ]
+}

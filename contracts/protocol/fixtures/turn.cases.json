@@ -1,0 +1,4 @@
+{"schema":"turn.schema.json","valid":[
+{"protocolVersion":"1.0","messageType":"CommitTilePlacement","messageId":"cmd1","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"2026-07-23T08:00:00Z","payload":{"seatId":"seat1","clientCommandSequence":42,"expectedGameRevision":108,"tileInstanceId":"tile1","position":{"x":3,"y":-2},"rotation":"East"}},
+{"protocolVersion":"1.0","messageType":"TilePlaced","messageId":"evt1","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"2026-07-23T08:00:01Z","payload":{"eventSequence":302,"gameRevision":109,"rulesetHash":"sha256:abc","tileInstanceId":"tile1","position":{"x":3,"y":-2},"rotation":"East"}}],"invalid":[
+{"protocolVersion":"1.0","messageType":"CommitTilePlacement","messageId":"cmd2","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"2026-07-23T08:00:00Z","payload":{"rotation":"UpsideDown"}}]}

@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://carcassonne.local/schemas/scenario.schema.json",
+  "title": "ScenarioCatalog",
+  "description": "规则场景测试：把官方规则书示例（或社区争议案例）转写成可机械执行的 given/when/expect 断言，作为规则引擎验收测试的数据源。坐标系：x 向东、y 向北，整数格；rotation 为顺时针 0/90/180/270。",
+  "type": "object",
+  "required": ["schemaVersion", "catalogId", "scenarios"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "catalogId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/scenario" }
+    }
+  },
+  "$defs": {
+    "scenario": {
+      "type": "object",
+      "required": ["scenarioId", "title", "rulesetId", "sourceReference", "given", "when", "expect"],
+      "additionalProperties": false,
+      "properties": {
+        "scenarioId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "title": { "type": "string", "minLength": 1 },
+        "rulesetId": { "type": "string", "description": "适用规则集，当前为 base-current。" },
+        "sourceReference": {
+          "type": "object",
+          "required": ["document"],
+          "additionalProperties": false,
+          "description": "来源出处，复核必备。official-example 应给出页码；缺失时交叉校验器给出警告并视为待复核。",
+          "properties": {
+            "document": { "type": "string", "description": "如 Z-Man 官方规则书（zm7813_carcassonne_rules.pdf）。" },
+            "page": { "type": "integer", "minimum": 1 },
+            "kind": { "type": "string", "enum": ["official-example", "official-clarification", "community-consensus", "derived"], "description": "official-example=规则书印刷示例原样转写；derived=由多条规则推导的构造案例（需复核）。" }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["road", "city", "monastery", "field", "pennant", "tie", "endgame", "deployment", "abbot", "river"] },
+          "minItems": 1
+        },
+        "given": {
+          "type": "object",
+          "required": ["board"],
+          "additionalProperties": false,
+          "properties": {
+            "board": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["x", "y", "tileDefinitionId", "rotation"],
+                "additionalProperties": false,
+                "properties": {
+                  "x": { "type": "integer" },
+                  "y": { "type": "integer" },
+                  "tileDefinitionId": { "type": "string", "description": "形如 <catalogId>.<definitionId>，如 base-current.monastery。" },
+                  "rotation": { "enum": [0, 90, 180, 270], "description": "顺时针角度。" }
+                }
+              }
+            },
+            "meeples": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["player", "x", "y", "role"],
+                "additionalProperties": false,
+                "properties": {
+                  "player": { "type": "integer", "minimum": 1, "description": "玩家序号 1–5。" },
+                  "x": { "type": "integer" },
+                  "y": { "type": "integer" },
+                  "role": { "type": "string", "enum": ["knight", "thief", "monk", "farmer", "abbot"] },
+                  "segmentId": { "type": "string", "description": "可选，消歧用；缺省时按 role+坐标唯一推断。" }
+                }
+              }
+            },
+            "scores": {
+              "type": "object",
+              "additionalProperties": { "type": "integer" },
+              "description": "各玩家进入本场景前的分数，键为玩家序号字符串；缺省为 0。"
+            }
+          }
+        },
+        "when": {
+          "type": "object",
+          "required": ["action"],
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": ["score-feature", "endgame", "place-piece", "reclaim-abbot"],
+              "description": "score-feature=结算刚完成的特征；endgame=终局结算；place-piece=尝试部署角色；reclaim-abbot=本回合跳过部署并召回已有修道院长。"
+            },
+            "at": {
+              "type": "object",
+              "required": ["x", "y"],
+              "additionalProperties": false,
+              "properties": {
+                "x": { "type": "integer" },
+                "y": { "type": "integer" }
+              },
+              "description": "score-feature 时指明最后放下的块（由此确定结算的特征）。"
+            },
+            "piece": {
+              "type": "object",
+              "required": ["player", "role"],
+              "additionalProperties": false,
+              "properties": {
+                "player": { "type": "integer", "minimum": 1 },
+                "role": { "type": "string", "enum": ["knight", "thief", "monk", "farmer", "abbot"] },
+                "segmentId": { "type": "string" }
+              },
+              "description": "place-piece 时尝试部署的角色；位置由 at 指定。"
+            }
+          }
+        },
+        "expect": {
+          "type": "object",
+          "required": ["pointsAwarded"],
+          "additionalProperties": false,
+          "properties": {
+            "pointsAwarded": {
+              "type": "object",
+              "additionalProperties": { "type": "integer" },
+              "description": "本场景各玩家获得的分数，键为玩家序号字符串。未列出的玩家得 0 分。"
+            },
+            "meeplesReturned": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["player", "x", "y"],
+                "additionalProperties": false,
+                "properties": {
+                  "player": { "type": "integer", "minimum": 1 },
+                  "x": { "type": "integer" },
+                  "y": { "type": "integer" }
+                }
+              },
+              "description": "结算后应收回的随从位置。endgame 场景可省略（终局不强制收回断言）。"
+            },
+            "actionAccepted": {
+              "type": "boolean",
+              "description": "place-piece 的动作合法性断言。"
+            },
+            "rejectionCode": {
+              "type": "string",
+              "enum": ["FEATURE_OCCUPIED", "PIECE_NOT_ALLOWED", "TARGET_NOT_ON_NEW_TILE"],
+              "description": "动作拒绝的稳定领域原因，不是展示文案。"
+            }
+          }
+        }
+      }
+    }
+  }
+}

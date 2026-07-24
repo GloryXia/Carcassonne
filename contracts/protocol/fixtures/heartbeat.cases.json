@@ -1,0 +1,4 @@
+{"schema":"heartbeat.schema.json","valid":[
+{"protocolVersion":"1.0","messageType":"Heartbeat","messageId":"h1","instanceId":"host1","roomId":"room1","gameId":null,"sentAt":"2026-07-23T08:00:00Z","payload":{"nonce":"n1"}},
+{"protocolVersion":"1.0","messageType":"HeartbeatAck","messageId":"h2","correlationId":"h1","instanceId":"host1","roomId":"room1","gameId":null,"sentAt":"2026-07-23T08:00:01Z","payload":{"nonce":"n1"}}],"invalid":[
+{"protocolVersion":"1.0","messageType":"Heartbeat","messageId":"h3","instanceId":"host1","roomId":"room1","gameId":null,"sentAt":"2026-07-23T08:00:00Z","payload":{"nonce":"","extra":true}}]}

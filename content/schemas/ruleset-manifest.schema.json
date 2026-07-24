@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://carcassonne.local/schemas/ruleset-manifest.schema.json",
+  "title": "RulesetManifest",
+  "description": "规则集清单：一轮游戏启用的模块、玩家与随从参数、地块目录引用与计分参数。规则引擎不硬编码任何数值，全部从此清单注入。详见 docs/RULE_ENGINE_TECHNICAL_DESIGN.md。",
+  "type": "object",
+  "required": ["schemaVersion", "rulesetId", "displayName", "verificationStatus", "players", "playerColors", "piecesPerPlayer", "tileCatalogs", "modules", "scoring"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "rulesetId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$",
+      "description": "当前允许：base-current（当前规则口径，兼容 C1/C2/C3 共有行为）。未来扩展：base-c1-classic 等历史口径。"
+    },
+    "displayName": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "verificationStatus": {
+      "type": "string",
+      "enum": ["待录入", "已录入", "已复核", "已测试"],
+      "description": "内容验证四级：录入→双人复核→引擎场景测试全绿。"
+    },
+    "players": {
+      "type": "object",
+      "required": ["min", "max"],
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "integer", "const": 2 },
+        "max": { "type": "integer", "const": 5, "description": "当前规则 2–5 人；6 人属扩展（Inns & Cathedrals 提供第 6 色），不在本清单。" }
+      }
+    },
+    "playerColors": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["yellow", "red", "green", "blue", "black"] },
+      "minItems": 5,
+      "maxItems": 5,
+      "description": "官方五色（规则书组件表顺序：黄、红、绿、蓝、黑）。"
+    },
+    "piecesPerPlayer": {
+      "type": "object",
+      "required": ["meeples", "meeplesOnScoreboard", "abbots"],
+      "additionalProperties": false,
+      "properties": {
+        "meeples": { "type": "integer", "const": 8, "description": "每人 8 个随从（含计分板上的 1 个）。" },
+        "meeplesOnScoreboard": { "type": "integer", "const": 1, "description": "其中 1 个放在计分板 0 分位，实际可部署 7 个。" },
+        "abbots": { "type": "integer", "const": 1, "description": "每人 1 个修道院长（当前规则 5 人局全部使用）。" }
+      }
+    },
+    "tileCatalogs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "contributesTiles"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "description": "相对于本清单文件的目录 JSON 路径。" },
+          "contributesTiles": { "type": "integer", "minimum": 1, "description": "该目录预期贡献的地块总数，用于完整性校验。" }
+        }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["moduleId", "enabled"],
+        "additionalProperties": false,
+        "properties": {
+          "moduleId": {
+            "type": "string",
+            "enum": ["base", "farmers", "river", "abbot"],
+            "description": "base=基础流程；farmers=田野与农夫；river=河流 12 块替换起始块的开局；abbot=修道院长。当前规则下四者同属一盒。"
+          },
+          "enabled": { "type": "boolean" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "required": ["roadPerTile", "cityPerTileComplete", "cityPerPennantComplete", "monasteryBase", "monasteryPerAdjacentTile", "farmerPerCompletedCity", "endgame", "tieRule"],
+      "additionalProperties": false,
+      "properties": {
+        "roadPerTile": { "type": "integer", "const": 1 },
+        "cityPerTileComplete": { "type": "integer", "const": 2 },
+        "cityPerPennantComplete": { "type": "integer", "const": 2 },
+        "monasteryBase": { "type": "integer", "const": 1, "description": "修道院自身块 1 分。" },
+        "monasteryPerAdjacentTile": { "type": "integer", "const": 1, "description": "周围 8 格每块 1 分，完成共 9 分。" },
+        "farmerPerCompletedCity": { "type": "integer", "const": 3, "description": "终局：农夫对每个与其田野接壤的已完成城市得 3 分。" },
+        "endgame": {
+          "type": "object",
+          "required": ["roadPerTileIncomplete", "cityPerTileIncomplete", "cityPerPennantIncomplete", "monasteryScoresAsPlaced", "fieldScores", "pennantsInIncompleteCitiesScore"],
+          "additionalProperties": false,
+          "properties": {
+            "roadPerTileIncomplete": { "type": "integer", "const": 1 },
+            "cityPerTileIncomplete": { "type": "integer", "const": 1 },
+            "cityPerPennantIncomplete": { "type": "integer", "const": 1 },
+            "monasteryScoresAsPlaced": { "type": "boolean", "const": true, "description": "未完成修道院按已放块数计分（自身 1 + 已有邻居）。" },
+            "fieldScores": { "type": "boolean", "const": false, "description": "终局田野不计分（田野只在农夫计分阶段结算一次）。" },
+            "pennantsInIncompleteCitiesScore": { "type": "boolean", "const": true, "description": "当前规则书明确：未完成城市的盾徽终局仍计分（与 C1 相同）。" }
+          }
+        },
+        "tieRule": {
+          "type": "string",
+          "enum": ["并列全分"],
+          "description": "并列多数时所有并列玩家获得全额分数（当前规则书明确）。"
+        }
+      }
+    }
+  }
+}

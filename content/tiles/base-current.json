@@ -1,0 +1,1010 @@
+{
+  "catalogId": "base-current",
+  "rulesetVersion": "base-current",
+  "expansionId": "base",
+  "status": "draft",
+  "sourceBaseline": {
+    "note": "24 种图案 72 块已全部录入（含起始地块）。前 8 种沿用既有录入；后 16 种转写自 CAR v4.0 p.16 基础盒组件表（含地块扫描图，逐一目检盾徽与城/田分割），并以 russcon 边缘统计（田野 115 / 道路 94 / 城市 79）交叉核验一致。",
+    "references": [
+      "Z-Man 当前基础规则 PDF（README 规则资料基线；组件页为图片，无逐图案数量）",
+      "Complete Annotated Rules v4.0 p.16 Tile Distribution（dmediamom.com 镜像 PDF）",
+      "russcon.org Carcassonne Tile Distribution 边缘统计（Robert Gatliff 编制）",
+      "docs/GAME_RULES.md §2 组件清单"
+    ]
+  },
+  "designs": [
+    {
+      "tileDefinitionId": "base-current.monastery",
+      "copiesInPool": 4,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 1,
+      "segments": [
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] }
+          ]
+        }
+      ],
+      "centerFeatures": [
+        { "centerFeatureId": "center-monastery-1", "kind": "monastery" }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-monastery-1", "targetRef": "center-monastery-1", "allowedPieces": ["meeple", "abbot"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "Z-Man 基础规则组件节（修道院）；锁定版官方组件表待复核",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.monastery-road",
+      "copiesInPool": 2,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [{ "edge": "S", "zones": ["center"] }],
+          "endsAtCenter": true
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "right"] }
+          ]
+        }
+      ],
+      "centerFeatures": [
+        { "centerFeatureId": "center-monastery-1", "kind": "monastery" }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-monastery-1", "targetRef": "center-monastery-1", "allowedPieces": ["meeple", "abbot"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "Z-Man 基础规则组件节（修道院带路）；锁定版官方组件表待复核",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.road-straight",
+      "copiesInPool": 8,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 2,
+      "segments": [
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "Z-Man 基础规则组件节；锁定版官方组件表待复核",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.road-curve",
+      "copiesInPool": 9,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "S", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left"] },
+            { "edge": "S", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "S", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "Z-Man 基础规则组件节；锁定版官方组件表待复核",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.road-t",
+      "copiesInPool": 4,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "S", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "Z-Man 基础规则组件节；锁定版官方组件表待复核",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.road-x",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 1,
+      "segments": [
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "N", "zones": ["center"] },
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "N", "zones": ["right"] },
+            { "edge": "E", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "S", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-4",
+          "featureType": "field",
+          "ports": [
+            { "edge": "W", "zones": ["right"] },
+            { "edge": "N", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-4", "targetRef": "seg-field-4", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "Z-Man 基础规则组件节；锁定版官方组件表待复核",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-cap",
+      "copiesInPool": 5,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "Z-Man 基础规则组件节；锁定版官方组件表待复核",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-cap-road-straight",
+      "copiesInPool": 3,
+      "startTileCopies": 1,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        }
+      ],
+      "placementTags": ["start-tile"],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "Z-Man 基础规则组件节（起始地块图样）；锁定版官方组件表待复核",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-full-pennant",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 1,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] }
+          ],
+          "symbols": ["pennant"]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cccc×1，扫描图确认带盾徽）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-triple",
+      "copiesInPool": 3,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["left", "center", "right"] }]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cccf×3）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-triple-pennant",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] }
+          ],
+          "symbols": ["pennant"]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["left", "center", "right"] }]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cccf 带盾徽×1，扫描图确认）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-triple-road",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [{ "edge": "W", "zones": ["center"] }]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["left", "right"] }]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cccr×1，扫描图确认道路止于城门、田野绕过路端连通）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-triple-road-pennant",
+      "copiesInPool": 2,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] }
+          ],
+          "symbols": ["pennant"]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [{ "edge": "W", "zones": ["center"] }]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["left", "right"] }]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cccr 带盾徽×2，扫描图确认）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-corner",
+      "copiesInPool": 3,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（ccff 连通×3）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-corner-pennant",
+      "copiesInPool": 2,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] }
+          ],
+          "symbols": ["pennant"]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（ccff 连通带盾徽×2）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-corner-split",
+      "copiesInPool": 2,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-city-2",
+          "featureType": "city",
+          "ports": [{ "edge": "E", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-city-2", "targetRef": "seg-city-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（ccff 不连通×2，扫描图确认两城被田野隔开）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-corner-road-curve",
+      "copiesInPool": 3,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [{ "edge": "S", "zones": ["left"] }]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["right"] }]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（ccrr×3，扫描图确认三段田野互不相连）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-corner-road-curve-pennant",
+      "copiesInPool": 2,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "E", "zones": ["left", "center", "right"] }
+          ],
+          "symbols": ["pennant"]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [{ "edge": "S", "zones": ["left"] }]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["right"] }]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（ccrr 带盾徽×2）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-tunnel",
+      "copiesInPool": 1,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 2,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [{ "edge": "E", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["left", "center", "right"] }]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cfcf 连通×1，扫描图确认城市贯通、两侧田野分离）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-tunnel-pennant",
+      "copiesInPool": 2,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 2,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [
+            { "edge": "N", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left", "center", "right"] }
+          ],
+          "symbols": ["pennant"]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [{ "edge": "E", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [{ "edge": "W", "zones": ["left", "center", "right"] }]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cfcf 连通带盾徽×2，扫描图确认）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-opposite-split",
+      "copiesInPool": 3,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 2,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-city-2",
+          "featureType": "city",
+          "ports": [{ "edge": "S", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "W", "zones": ["left", "center", "right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-city-2", "targetRef": "seg-city-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cfcf 不连通×3，扫描图确认两城分离、田野横贯连通）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-cap-road-curve-sw",
+      "copiesInPool": 3,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（cfrr×3，单城帽弯路 S+W 朝向）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-cap-road-curve-es",
+      "copiesInPool": 3,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "S", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["left"] },
+            { "edge": "E", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "W", "zones": ["left", "center", "right"] },
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "E", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（crrf×3，单城帽弯路 E+S 朝向，与 cfrr 互为镜像）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    },
+    {
+      "tileDefinitionId": "base-current.city-cap-road-t",
+      "copiesInPool": 3,
+      "startTileCopies": 0,
+      "footprint": { "kind": "singleCell" },
+      "allowedRotations": ["North", "East", "South", "West"],
+      "distinctRotations": 4,
+      "segments": [
+        {
+          "localSegmentId": "seg-city-1",
+          "featureType": "city",
+          "ports": [{ "edge": "N", "zones": ["left", "center", "right"] }]
+        },
+        {
+          "localSegmentId": "seg-road-1",
+          "featureType": "road",
+          "ports": [
+            { "edge": "E", "zones": ["center"] },
+            { "edge": "S", "zones": ["center"] },
+            { "edge": "W", "zones": ["center"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-1",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["left"] },
+            { "edge": "W", "zones": ["right"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-2",
+          "featureType": "field",
+          "ports": [
+            { "edge": "E", "zones": ["right"] },
+            { "edge": "S", "zones": ["left"] }
+          ]
+        },
+        {
+          "localSegmentId": "seg-field-3",
+          "featureType": "field",
+          "ports": [
+            { "edge": "S", "zones": ["right"] },
+            { "edge": "W", "zones": ["left"] }
+          ]
+        }
+      ],
+      "meepleZones": [
+        { "zoneId": "zone-city-1", "targetRef": "seg-city-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-road-1", "targetRef": "seg-road-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-1", "targetRef": "seg-field-1", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-2", "targetRef": "seg-field-2", "allowedPieces": ["meeple"] },
+        { "zoneId": "zone-field-3", "targetRef": "seg-field-3", "allowedPieces": ["meeple"] }
+      ],
+      "visualAssetId": null,
+      "sourceReference": "CAR v4.0 p.16 基础盒组件表（crrr×3，单城帽三岔路）；russcon 边缘统计交叉核验",
+      "verificationStatus": "已录入"
+    }
+  ]
+}

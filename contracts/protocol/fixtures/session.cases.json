@@ -1,0 +1,4 @@
+{"schema":"session.schema.json","valid":[
+{"protocolVersion":"1.0","messageType":"ResumeSession","messageId":"m1","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"2026-07-23T08:00:00Z","payload":{"lastEventSequence":12,"viewSchemaVersion":"1"}},
+{"protocolVersion":"1.0","messageType":"SessionResumed","messageId":"m2","correlationId":"m1","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"2026-07-23T08:00:01Z","payload":{"lastEventSequence":14,"viewSchemaVersion":"1"}}],"invalid":[
+{"protocolVersion":"1.0","messageType":"ResumeSession","messageId":"m3","instanceId":"host1","roomId":"room1","gameId":"game1","sentAt":"bad-date","payload":{"lastEventSequence":-1,"viewSchemaVersion":"1"}}]}

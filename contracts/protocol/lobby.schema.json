@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "title": "Lobby family (draft)",
+  "allOf": [{"$ref": "envelope.schema.json"}],
+  "properties": {"messageType": {"enum": ["JoinRequestPending", "JoinRequestApproved"]}, "gameId": {"type": "null"},
+    "payload": {"type": "object", "required": ["joinRequestId"], "properties": {"joinRequestId": {"type": "string", "minLength": 1}, "seatId": {"type": "string", "minLength": 1}}, "additionalProperties": false}}
+}

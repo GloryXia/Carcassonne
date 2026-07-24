@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "rulesetId": "base-current",
+  "displayName": "Carcassonne 基础盒（当前规则口径）",
+  "description": "兼容 C1/C2/C3 共有行为的单一规则集：72 块基础地块 + 12 块河流 + 5 色×8 随从 + 5 修道院长；农夫 3 分制；并列全分。",
+  "verificationStatus": "已录入",
+  "players": { "min": 2, "max": 5 },
+  "playerColors": ["yellow", "red", "green", "blue", "black"],
+  "piecesPerPlayer": {
+    "meeples": 8,
+    "meeplesOnScoreboard": 1,
+    "abbots": 1
+  },
+  "tileCatalogs": [
+    { "path": "../tiles/base-current.json", "contributesTiles": 72 },
+    { "path": "../tiles/river-current.json", "contributesTiles": 12 }
+  ],
+  "modules": [
+    { "moduleId": "base", "enabled": true },
+    { "moduleId": "farmers", "enabled": true, "notes": "基础盒内置农夫规则（3 分制），非扩展。" },
+    { "moduleId": "river", "enabled": true, "notes": "河流 12 块为当前基础盒内置开局模块；启用时不使用基础起始块（带深色背纹的起始块）。河流目录 river-current.json 已录入（10 种图案 12 块，含源头/湖泊），编码约定见 docs/TILE_TOPOLOGY_SPEC.md §13。" },
+    { "moduleId": "abbot", "enabled": true, "notes": "当前基础盒内置；2–4 人局规则书说明 5 个修道院长全部使用（即每色 1 个）。" }
+  ],
+  "scoring": {
+    "roadPerTile": 1,
+    "cityPerTileComplete": 2,
+    "cityPerPennantComplete": 2,
+    "monasteryBase": 1,
+    "monasteryPerAdjacentTile": 1,
+    "farmerPerCompletedCity": 3,
+    "endgame": {
+      "roadPerTileIncomplete": 1,
+      "cityPerTileIncomplete": 1,
+      "cityPerPennantIncomplete": 1,
+      "monasteryScoresAsPlaced": true,
+      "fieldScores": false,
+      "pennantsInIncompleteCitiesScore": true
+    },
+    "tieRule": "并列全分"
+  }
+}
